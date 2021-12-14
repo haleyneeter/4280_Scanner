@@ -15,6 +15,7 @@
 FILE *myFile = NULL;
 int lineCount = 1;
 bool isEOF = false;
+bool isKB = false;
 int main(int argc, char *argv[]) {
 
     char filename[20];
@@ -43,6 +44,7 @@ int main(int argc, char *argv[]) {
     else if(argc == 1)
     {
 	char flag;
+	isKB = true;
     	printf("KEYBOARD INPUT: USE @ KEY (SHIFT + 2) TO STOP WRITING\n");
 	FILE * fp = fopen("temp.txt","w");
         flag = getc(stdin);
