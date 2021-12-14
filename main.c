@@ -42,9 +42,9 @@ int main(int argc, char *argv[]) {
     }
     else if(argc == 1)
     {
-	      char flag;
-    	  printf("KEYBOARD INPUT: USE @ KEY (SHIFT + 2) TO STOP WRITING\n");
-	      FILE * fp = fopen("temp.txt","w");
+	char flag;
+    	printf("KEYBOARD INPUT: USE @ KEY (SHIFT + 2) TO STOP WRITING\n");
+	FILE * fp = fopen("temp.txt","w");
         flag = getc(stdin);
         while (flag != '@') 
     	  {
@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
        		  flag = getc(stdin);
     	  }
 
-    	  fclose(fp);
+    	fclose(fp);
         myFile = fopen("temp.txt","r");
         if(myFile == NULL)
         {
@@ -75,5 +75,6 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(myFile);
+    remove("temp.txt");
     return 0;
 }
