@@ -77,6 +77,9 @@ int main(int argc, char *argv[]) {
     }
 
     fclose(myFile);
-    remove("temp.txt");
+    if(isKB)
+    {
+        remove("temp.txt");
+    }
     return 0;
 }
