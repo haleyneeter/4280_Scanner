@@ -11,6 +11,7 @@ int isCharacter(char c);
 Enums getState(int state);
 struct Token newScanner(FILE *fp);
 void newErrorHandle(struct Token t);
+void deleteFile();
 Enums getKeyword(struct Token t);
 
 #endif
