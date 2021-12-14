@@ -29,4 +29,6 @@ struct Token {
 extern FILE *myFile;
 extern int lineCount;
 extern bool isEOF;
+extern bool isKB;
+
 #endif
