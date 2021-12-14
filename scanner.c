@@ -41,6 +41,7 @@ struct Token newScanner(FILE *fp)
                 printf("Scanner Error\n");
                 printf("Line: %d\n",lineCount);
                 printf("Reason: Comments must start with &&\n"); //Note- only works with single line comments
+                deleteFile();
                 exit( EXIT_FAILURE );
              }
              while(1)
@@ -57,6 +58,7 @@ struct Token newScanner(FILE *fp)
                     printf("Scanner Error\n");
                     printf("Line: %d\n",lineCount);
                     printf("Reason: Comments must end with &&\n");
+                    deleteFile();
                     exit( EXIT_FAILURE );
                 }
                 
@@ -77,6 +79,7 @@ struct Token newScanner(FILE *fp)
             printf("Scanner Error for Character %c\n",c);
             printf("Line: %d\n",lineCount);
             printf("Reason: Character is not allowed in this language\n");
+            deleteFile();
             exit( EXIT_FAILURE );
         }
         else
@@ -87,6 +90,7 @@ struct Token newScanner(FILE *fp)
                 printf("Scanner Error for Token %s\n",word);
                 printf("Line: %d\n",lineCount);
                 printf("Reason: $ symbol must be followed by an alphanumeric\n");
+                deleteFile();
                 exit( EXIT_FAILURE );
 
             }
@@ -252,9 +256,9 @@ void newErrorHandle(struct Token t)
     if (len >= 8)
     {
         printf("Scanner Error for Token %s\n",t.literal);
-
         printf("Line: %d\n",t.inputLine);
         printf("Reason: Tokens cannot be longer than 8 characters\n");
+        deleteFile();
         exit( EXIT_FAILURE );
 
     }
@@ -268,6 +272,7 @@ void newErrorHandle(struct Token t)
             printf("Scanner Error for Token %s\n",t.literal);
             printf("Line: %d\n",t.inputLine);
             printf("Reason: Identifier must start with either a lowercase letter or a $\n");
+            deleteFile();
             exit( EXIT_FAILURE );
         }
     }
@@ -298,4 +303,11 @@ Enums getKeyword(struct Token t)
         x++;  //can also increase enums same as ints
     }
     return t.type;
+}
+void deleteFile()
+{
+    if(isKB)
+    {
+        remove("temp.txt");
+    }
 }
